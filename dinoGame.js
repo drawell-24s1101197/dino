@@ -44,6 +44,7 @@ class DinoGame {
         this.score = 0;
         this.createEntity('dino');
         this.timer = setInterval(this.ticker, 30, this);
+        document.onkeydown = (e) => this.keydown(e);
     }
     ticker(self){
         self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
@@ -61,11 +62,9 @@ class DinoGame {
         //カウンタの更新
         self.counter = (self.counter + 1) % 1000000;
     }
-    keydown(){
-        document.onkeydown = (e) => {
-            if(e.code === 'Space' && this.dino.moveY === 0){
-                this.dino.moveY = -41
-            }
+    keydown(e){
+        if(e.code === 'Space' && this.dino.moveY === 0){
+            this.dino.moveY = -41
         }
     }
     createEntity(name){
