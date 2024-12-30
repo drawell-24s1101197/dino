@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
  */
 const imgNames = ['bird', 'cactus', 'dino'];
 
-class Game {
+class DinoGame {
     /**
      * @param {HTMLCanvasElement} canvas
      * @param {string[]} imageNames 
@@ -42,9 +42,41 @@ class Game {
         this.enemys = [];
         this.isGameOver = false;
         this.score = 0;
-        this.ctx.drawImage(this.img.bird, 500, 320);
-        this.ctx.drawImage(this.img.cactus, 300, 320);
-        this.ctx.drawImage(this.img.dino, 100, 320);
+        this.createEntity('dino');
+        this.timer = setInterval(this.ticker, 30);
+    }
+    ticker(){
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        //TODO 敵キャラ作成
+
+        //キャラクタの移動
+        this.move('dino')
+
+        //キャラクタの描画
+        this.draw('dino')
+
+        //TODO あたり判定
+
+        //カウンタの更新
+        this.counter = (this.counter + 1) % 1000000;
+    }
+    keydown(){
+        document.onkeydown = (e) => {
+            if(e.code === 'Space' && this.dino.moveY === 0){
+                this.dino.moveY = -41
+            }
+        }
+    }
+    createEntity(name){
+        this[name] = {
+            x: this.img[name].width / 2,
+            y: this.canvas.height - this.img[name].height / 2,
+            moveY: 0,
+            width: this.img[name].width,
+            height: this.img[name].height,
+            image: this.img[name]
+        }
     }
 }
-const game = new Game(canvas, imgNames);
+const game = new DinoGame(canvas, imgNames);
