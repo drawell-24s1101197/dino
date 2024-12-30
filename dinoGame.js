@@ -56,7 +56,8 @@ class DinoGame {
     ticker(self){
         self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
 
-        if(self.r(100) === 0)self.createEnemys('cactus');
+        if(self.r(100 - self.score % 100) === 0)
+            if(self.r(5) === 0)self.createEnemys('cactus');
         else if(self.r(100) === 0)self.createEnemys('bird');
 
         //キャラクタの移動
@@ -66,10 +67,12 @@ class DinoGame {
         //キャラクタの描画
         self.draw('dino')
         self.draw('enemys');
+        self.draw('score');
 
         self.hitCheck();
 
         //カウンタの更新
+        self.score += 1;
         self.counter = (self.counter + 1) % 1000000;
     }
     keydown(e){
@@ -134,6 +137,10 @@ class DinoGame {
                     enemy.y -enemy.height /2
                 )
             }
+        }
+        if(name === 'score'){
+            this.ctx.font = '24px serif';
+            this.ctx.fillText(`score:${this.score}`, 0, 30);
         }
     }
     hitCheck(){
