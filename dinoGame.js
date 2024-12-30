@@ -140,8 +140,8 @@ class DinoGame {
         const {x, y, width, height} = this.dino;
         for (const enemy of this.enemys){
             if(
-                Math.abs(x - enemy.x) < width / 2 + enemy.width &&
-                Math.abs(y - enemy.y) < height / 2 + enemy.height
+                Math.abs(x - enemy.x) < width * 0.8 / 2 + enemy.width * 0.9 &&
+                Math.abs(y - enemy.y) < height * 0.5 / 2 + enemy.height * 0.9
             ){
                 this.isGameOver = true;
                 this.ctx.font = 'bold 100px serif';
