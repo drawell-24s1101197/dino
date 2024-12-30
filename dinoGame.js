@@ -47,4 +47,4 @@ class Game {
         this.ctx.drawImage(this.img.dino, 100, 320);
     }
 }
-const game = new Game();
+const game = new Game(canvas, imgNames);
