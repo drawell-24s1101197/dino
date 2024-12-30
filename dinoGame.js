@@ -67,7 +67,7 @@ class DinoGame {
         self.draw('dino')
         self.draw('enemys');
 
-        //TODO あたり判定
+        self.hitCheck();
 
         //カウンタの更新
         self.counter = (self.counter + 1) % 1000000;
@@ -133,6 +133,20 @@ class DinoGame {
                     enemy.x -enemy.width / 2,
                     enemy.y -enemy.height /2
                 )
+            }
+        }
+    }
+    hitCheck(){
+        const {x, y, width, height} = this.dino;
+        for (const enemy of this.enemys){
+            if(
+                Math.abs(x - enemy.x) < width / 2 + enemy.width &&
+                Math.abs(y - enemy.y) < height / 2 + enemy.height
+            ){
+                this.isGameOver = true;
+                this.ctx.font = 'bold 100px serif';
+                this.ctx.fillText('Game Over!', 150, 200);
+                clearInterval(this.timer);
             }
         }
     }
