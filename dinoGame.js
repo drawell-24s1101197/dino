@@ -43,23 +43,23 @@ class DinoGame {
         this.isGameOver = false;
         this.score = 0;
         this.createEntity('dino');
-        this.timer = setInterval.bind(this,this.ticker, 30)();
+        this.timer = setInterval(this.ticker, 30, this);
     }
-    ticker(){
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    ticker(self){
+        self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
 
         //TODO 敵キャラ作成
 
         //キャラクタの移動
-        this.move('dino')
+        self.move('dino')
 
         //キャラクタの描画
-        this.draw('dino')
+        self.draw('dino')
 
         //TODO あたり判定
 
         //カウンタの更新
-        this.counter = (this.counter + 1) % 1000000;
+        self.counter = (self.counter + 1) % 1000000;
     }
     keydown(){
         document.onkeydown = (e) => {
