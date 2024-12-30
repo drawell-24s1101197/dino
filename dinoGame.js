@@ -90,7 +90,9 @@ class DinoGame {
         }
     }
     draw(name){
-
+        this.ctx.drawImage(this.img[name],
+            this[name].x - this[name].width / 2,
+            this[name].y - this[name].height/ 2);
     }
 }
 const game = new DinoGame(canvas, imgNames);
