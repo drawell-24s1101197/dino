@@ -73,7 +73,7 @@ class DinoGame {
         self.counter = (self.counter + 1) % 1000000;
     }
     keydown(e){
-        if(e.code === 'Space' && this.dino.moveY === 0){
+        if((e.code === 'Space' || e.code === 'ArrowUp')&& this.dino.moveY === 0){
             this.dino.moveY = -41
         }
     }
