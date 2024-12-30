@@ -87,7 +87,7 @@ class DinoGame {
             })(0.1);
             this.init();
         };
-        if(e.code === 'KeyX')this.dino.moveY = this.dino.y;
+        if(e.code === 'KeyX')this.dino.moveY = -41;
     }
     createDino(){
         this["dino"] = {
