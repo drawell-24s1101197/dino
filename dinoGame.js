@@ -43,7 +43,7 @@ class DinoGame {
         this.isGameOver = false;
         this.score = 0;
         this.createEntity('dino');
-        this.timer = setInterval(this.ticker, 30);
+        this.timer = setInterval.bind(this,this.ticker, 30)();
     }
     ticker(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
