@@ -79,7 +79,7 @@ class DinoGame {
         if((e.code === 'Space' || e.code === 'ArrowUp')&& this.dino.moveY === 0){
             this.dino.moveY = -41
         }
-        if(e.code === 'Enter' && this.isGameOver){
+        if((e.code === 'Enter' || e.cpde === 'R')&& this.isGameOver){
             (async (time)=>{
                 await new Promise((resolve)=>{
                     setTimeout(resolve, 1000 * time)
@@ -87,6 +87,7 @@ class DinoGame {
             })(0.1);
             this.init();
         };
+        if(e.code === 'X')this.dino.moveY = this.dino.y;
     }
     createDino(){
         this["dino"] = {
