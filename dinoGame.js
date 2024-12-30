@@ -78,5 +78,19 @@ class DinoGame {
             image: this.img[name]
         }
     }
+    move(name){
+        if(name === 'dino'){
+            this.dino.y += this.dino.moveY;
+            if (this.dino.y >= this.canvas.height - this.dino.height / 2){
+                this.dino.y = this.canvas.height - this.dino.height / 2;
+                this.dino.moveY = 0;
+            } else {
+                this.dino.moveY += 3;
+            }
+        }
+    }
+    draw(name){
+
+    }
 }
 const game = new DinoGame(canvas, imgNames);
