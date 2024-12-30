@@ -57,7 +57,7 @@ class DinoGame {
         self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
 
         if(self.r(100) === 0)self.createEnemys('cactus');
-        if(self.r(200) === 0)self.createEnemys('bird');
+        else if(self.r(200) === 0)self.createEnemys('bird');
 
         //キャラクタの移動
         self.move('dino');
