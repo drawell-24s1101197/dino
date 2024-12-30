@@ -39,6 +39,7 @@ class DinoGame {
             }
 
         }
+        document.onkeydown = (e) => this.keydown(e);
     }
     init(){
         this.counter = 0;
@@ -47,7 +48,6 @@ class DinoGame {
         this.score = 0;
         this.createDino('dino');
         this.timer = setInterval(this.ticker, 30, this);
-        document.onkeydown = (e) => this.keydown(e);
     }
     /**
      * 
@@ -79,6 +79,14 @@ class DinoGame {
         if((e.code === 'Space' || e.code === 'ArrowUp')&& this.dino.moveY === 0){
             this.dino.moveY = -41
         }
+        if(e.code === 'Enter' && this.isGameOver){
+            (async (time)=>{
+                await new Promise((resolve)=>{
+                    setTimeout(resolve, 1000 * time)
+                })
+            })(0.1);
+            this.init();
+        };
     }
     createDino(){
         this["dino"] = {
