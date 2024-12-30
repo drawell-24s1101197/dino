@@ -79,7 +79,7 @@ class DinoGame {
         if((e.code === 'Space' || e.code === 'ArrowUp')&& this.dino.moveY === 0){
             this.dino.moveY = -41
         }
-        if((e.code === 'Enter' || e.cpde === 'KeyR')&& this.isGameOver){
+        if((e.code === 'Enter' || e.code === 'KeyR')&& this.isGameOver){
             (async (time)=>{
                 await new Promise((resolve)=>{
                     setTimeout(resolve, 1000 * time)
