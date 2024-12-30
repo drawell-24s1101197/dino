@@ -28,7 +28,7 @@ class Game {
             this.img[imgName] = new Image();
             this.img[imgName].src = imagePath;
             this.img[imgName].onload = () => {
-                imgLoadCounter[0]++;
+                imgLoadCounter++;
                 if(imgLoadCounter === imageNames.length){
                     console.log('コンプリート：画像のロード');
                     this.init();
