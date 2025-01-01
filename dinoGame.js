@@ -97,10 +97,13 @@ class DinoGame {
                 await new Promise((resolve)=>{
                     setTimeout(resolve, 1000 * time)
                 })
-            })(0.1);
+            })(0.5);
             this.init();
         };
-        if(e.code === 'KeyX')this.canGameOver = !this.canGameOver;
+        if(e.code === 'KeyX'){
+            this.canGameOver = !this.canGameOver;
+            console.log('無敵:', this.canGameOver);
+        }
     }
     createDino(){
         this["dino"] = {
