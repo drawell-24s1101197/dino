@@ -25,6 +25,8 @@ class DinoGame {
         this.score = 0;
         this.timer = null;
         this.canGameOver = true;
+        this.enemyCountdown = 0; 
+
         let imgLoadCounter = 0;
         for (const imgDat of imageNames){
             const [imgName, imgAttr] = imgDat.split(':');
@@ -52,6 +54,7 @@ class DinoGame {
         this.score = 0;
         this.createDino('dino');
         this.timer = setInterval(this.ticker, 30, this);
+        this.enemyCountdown = 0;
     }
     /**
      * 
@@ -62,8 +65,8 @@ class DinoGame {
 
         //敵キャラ作成
         if(self.r(100 - self.score % 100) === 0)
-            if(self.r(5) === 0)self.createEnemys('cactus');
-        else if(self.r(100) === 0)self.createEnemys('bird');
+            self.createEnemys('cactus');
+        else if(self.r(100 -self.score % 100) === 0)self.createEnemys('bird');
         //背景作成
         if (self.counter % 10 === 0){
             self.createBackGround();
@@ -87,6 +90,7 @@ class DinoGame {
         //カウンタの更新
         self.score += 1;
         self.counter = (self.counter + 1) % 1000000;
+        self.enemyCountdown -= 1;
     }
     keydown(e){
         if((e.code === 'Space' || e.code === 'ArrowUp')&& this.dino.moveY === 0){
@@ -118,12 +122,23 @@ class DinoGame {
     }
     createEnemys(name){
         let enemyY = this.canvas.height - this.img[name].height / 2;
-        if(name === 'bird')enemyY = this.r(300 - this.img.bird.height) + 150;
         let enemyMoveX = 1;
-        if(name === 'bird')enemyMoveX = -15;
-        if(name === 'cactus')enemyMoveX = -10;
+        let enemyX = this.canvas.width + this.img[name].width / 2;
+        if(name === 'bird'){
+            enemyY = this.r(300 - this.img.bird.height) + 150;
+            enemyMoveX = -15
+        };
+        if(name === 'cactus'){
+            switch(this.r(3)){
+                case 0,1: break;
+                case 2:
+                    enemyX = this.canvas.width + this.img[name].width * 3 / 2;
+                    break;
+            }
+            enemyMoveX = -10;
+        }
         this.enemys.push({
-            x: this.canvas.width + this.img[name].width / 2,
+            x: enemyX,
             y: enemyY,
             moveX: enemyMoveX,
             width: this.img[name].width,
