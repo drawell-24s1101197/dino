@@ -102,7 +102,7 @@ class DinoGame {
         };
         if(e.code === 'KeyX'){
             this.canGameOver = !this.canGameOver;
-            console.log('無敵:', this.canGameOver);
+            console.log('無敵:', !this.canGameOver);
         }
     }
     createDino(){
